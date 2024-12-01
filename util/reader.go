@@ -7,8 +7,8 @@ import (
 )
 
 const (
-	input         = "input.txt"
-	example       = "example.txt"
+	input         = "resources/input.txt"
+	example       = "resources/example.txt"
 	lineDelimiter = "\n"
 	errorMessage  = "Error reading file %q: %q"
 )

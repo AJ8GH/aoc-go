@@ -8,9 +8,9 @@ import (
 
 var testCases = []struct {
 	name    string
-	subject func([]string) int64
+	subject func([]string) int
 	input   []string
-	want    int64
+	want    int
 }{
 	{
 		name:    "Day 1 Level 1 Example",
@@ -34,7 +34,7 @@ var testCases = []struct {
 		name:    "Day 1 Level 2",
 		subject: Level2,
 		input:   util.ReadInput(),
-		want:    0,
+		want:    27647262,
 	},
 }
 

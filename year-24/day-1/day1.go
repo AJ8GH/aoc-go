@@ -9,23 +9,34 @@ import (
 
 var re = regexp.MustCompile(`\d+`)
 
-func Level1(input []string) int64 {
-	firstNums, lastNums := getNumbers(input)
+func Level1(input []string) int {
+	first, last := getNumbers(input)
 
-	slices.Sort(firstNums)
-	slices.Sort(lastNums)
+	slices.Sort(first)
+	slices.Sort(last)
 
-	var sum int64 = 0
-	for i, v := range firstNums {
-		diff := v - lastNums[i]
-		sum += int64(math.Abs(float64(diff)))
+	sum := 0
+	for i, v := range first {
+		diff := v - last[i]
+		sum += int(math.Abs(float64(diff)))
 	}
 
 	return sum
 }
 
-func Level2(input []string) int64 {
-	return 0
+func Level2(input []string) int {
+	first, last := getNumbers(input)
+	count := map[int]int{}
+
+	for _, v := range last {
+		count[v]++
+	}
+
+	sum := 0
+	for _, v := range first {
+		sum += v * count[v]
+	}
+	return sum
 }
 
 func getNumbers(input []string) (first, last []int) {

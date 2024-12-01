@@ -43,8 +43,6 @@ Your actual left and right lists contain many location IDs. *What is the total d
 
 Your puzzle answer was `2344935`.
 
-The first half of this puzzle is complete! It provides one gold star: ⭐
-
 --- Part Two ---
 -------------------------
 
@@ -77,3 +75,7 @@ For these example lists, here is the process of finding the similarity score:
 So, for these example lists, the similarity score at the end of this process is *31* (`9 + 4 + 0 + 0 + 9 + 9`).
 
 Once again consider your left and right lists. *What is their similarity score?*
+
+Your puzzle answer was `27647262`.
+
+Both parts of this puzzle are complete! They provide two gold stars: ⭐ ⭐

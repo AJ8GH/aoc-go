@@ -32,29 +32,52 @@ var directions = []string{
 }
 
 func Level1(input []string) int {
-	xLocs := [][]int{}
-	for i, line := range input {
-		for j, char := range line {
-			if string(char) == x {
-				xLocs = append(xLocs, []int{i, j})
-			}
-		}
-	}
+	xLocs := getLocs(input, x)
 	return countXmas(xLocs, input)
 }
 
 func Level2(input []string) int {
-	return 0
+	aLocs := getLocs(input, a)
+	return countMasX(aLocs, input)
+}
+
+func getLocs(input []string, letter string) [][]int {
+	locs := [][]int{}
+	for i, line := range input {
+		for j, char := range line {
+			if string(char) == letter {
+				locs = append(locs, []int{i, j})
+			}
+		}
+	}
+	return locs
+}
+
+func countMasX(aLocs [][]int, input []string) int {
+	count := 0
+	for _, loc := range aLocs {
+		ne, sw := nextLoc(loc, northEast), nextLoc(loc, southWest)
+		se, nw := nextLoc(loc, southEast), nextLoc(loc, northWest)
+		neLetter, swLetter := getLetter(ne, input), getLetter(sw, input)
+		seLetter, nwLetter := getLetter(se, input), getLetter(nw, input)
+		if ((neLetter == m && swLetter == s) ||
+			(neLetter == s && swLetter == m)) &&
+			((seLetter == m && nwLetter == s) ||
+				(seLetter == s && nwLetter == m)) {
+			count++
+		}
+	}
+	return count
 }
 
 func countXmas(xLocs [][]int, input []string) int {
-	xmasCount := 0
+	count := 0
 	for _, loc := range xLocs {
 		for _, dir := range directions {
-			xmasCount += countForLoc(loc, input, x, dir)
+			count += countForLoc(loc, input, x, dir)
 		}
 	}
-	return xmasCount
+	return count
 }
 
 func countForLoc(loc []int, input []string, letter string, direction string) int {

@@ -44,8 +44,6 @@ Take a look at the little Elf's word search. *How many times does `XMAS` appear?
 
 Your puzzle answer was `2685`.
 
-The first half of this puzzle is complete! It provides one gold star: ⭐
-
 --- Part Two ---
 -------------------------
 
@@ -75,3 +73,7 @@ Here's the same example from before, but this time all of the `X-MAS`es have bee
 In this example, an `X-MAS` appears *9* times.
 
 Flip the word search from the instructions back over to the word search side and try again. *How many times does an `X-MAS` appear?*
+
+Your puzzle answer was `2048`.
+
+Both parts of this puzzle are complete! They provide two gold stars: ⭐ ⭐

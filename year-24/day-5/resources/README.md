@@ -80,8 +80,6 @@ Determine which updates are already in the correct order. *What do you get if yo
 
 Your puzzle answer was `4790`.
 
-The first half of this puzzle is complete! It provides one gold star: ⭐
-
 --- Part Two ---
 -------------------------
 
@@ -96,3 +94,7 @@ For each of the *incorrectly-ordered updates*, use the page ordering rules to pu
 After taking *only the incorrectly-ordered updates* and ordering them correctly, their middle page numbers are `47`, `29`, and `47`. Adding these together produces *123*.
 
 Find the updates which are not in the correct order. *What do you get if you add up the middle page numbers after correctly ordering just those updates?*
+
+Your puzzle answer was `6319`.
+
+Both parts of this puzzle are complete! They provide two gold stars: ⭐ ⭐

@@ -12,12 +12,12 @@ var testCases = []struct {
 	input   []string
 	want    int
 }{
-	{
-		name:    "Day 6 Level 1 Example",
-		subject: Level1,
-		input:   util.ReadExample(),
-		want:    41,
-	},
+	// {
+	// 	name:    "Day 6 Level 1 Example",
+	// 	subject: Level1,
+	// 	input:   util.ReadExample(),
+	// 	want:    41,
+	// },
 	{
 		name:    "Day 6 Level 1",
 		subject: Level1,

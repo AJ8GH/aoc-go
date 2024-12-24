@@ -1,55 +1,72 @@
 package day7
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 )
 
 var re = regexp.MustCompile(`\d+`)
+var cache1 = map[int][][]operator{1: {{plus}, {mult}}}
+var cache2 = map[int][][]operator{1: {{plus}, {mult}, {concat}}}
 
 type operator string
 
-var permsCache = map[int][][]operator{
-	1: {{plus}, {mult}},
+func permsCache(level int) map[int][][]operator {
+	switch level {
+	case 1:
+		return cache1
+	case 2:
+		return cache2
+	default:
+		panic("unknown level")
+	}
 }
 
 const (
-	plus operator = "+"
-	mult operator = "*"
+	plus   operator = "+"
+	mult   operator = "*"
+	concat operator = "||"
 )
 
 type equation struct {
-	answer int64
-	inputs []int64
+	answer    int64
+	inputs    []int64
+	operators []operator
 }
 
 func Level1(input []string) int64 {
+	return solve(input, 1)
+}
+
+func Level2(input []string) int64 {
+	return solve(input, 2)
+}
+
+func solve(input []string, level int) int64 {
 	equations := parse(input)
 
 	valid := []equation{}
 	for _, v := range equations {
-		if isValid(v) {
+		if isValid(&v, level) {
 			valid = append(valid, v)
 		}
 	}
 	return sumAnswers(valid)
 }
 
-func Level2(input []string) int64 {
-	return 0
-}
-
-func isValid(e equation) bool {
-	perms := perms(len(e.inputs) - 1)
+func isValid(e *equation, level int) bool {
+	perms := perms(len(e.inputs)-1, level)
 
 	for _, perm := range perms {
 		acc := e.inputs[0]
 		for i := 1; i < len(e.inputs); i++ {
 			op := perm[i-1]
 			acc = apply(acc, e.inputs[i], op)
-			if acc == e.answer {
-				return true
-			}
+		}
+		if acc == e.answer {
+			e.operators = perm
+			return true
 		}
 	}
 
@@ -62,6 +79,10 @@ func apply(a, b int64, op operator) int64 {
 		return a + b
 	case mult:
 		return a * b
+	case concat:
+		s := fmt.Sprint(a) + fmt.Sprint(b)
+		n, _ := strconv.ParseInt(s, 0, 64)
+		return n
 	default:
 		panic("Unknown operator")
 	}
@@ -83,31 +104,32 @@ func parse(input []string) (equations []equation) {
 			nums = append(nums, int64(n))
 		}
 		if len(nums) != 0 {
-			equations = append(equations, equation{nums[0], nums[1:]})
+			equations = append(equations, equation{nums[0], nums[1:], nil})
 		}
 	}
 	return
 }
 
-func perms(n int) (perms [][]operator) {
-	if permsCache[n] != nil {
-		return permsCache[n]
+func perms(n, level int) (perms [][]operator) {
+	cache := permsCache(level)
+	if cache[n] != nil {
+		return cache[n]
 	}
 
-	perms = permsCache[1]
+	perms = cache[1]
 	start := 1
 
 	for i := n; i > 1; i-- {
-		if permsCache[i] != nil {
-			perms = permsCache[i]
+		if cache[i] != nil {
+			perms = cache[i]
 			start = i
 			break
 		}
 	}
 
 	for i := start; i <= n; i++ {
-		if permsCache[i] == nil {
-			permsCache[i] = perms
+		if cache[i] == nil {
+			cache[i] = perms
 		}
 
 		if i == n {
@@ -122,58 +144,13 @@ func perms(n int) (perms [][]operator) {
 			b := append(copied, mult)
 			operators = append(operators, a)
 			operators = append(operators, b)
+			if level == 2 {
+				c := append(copied, concat)
+				operators = append(operators, c)
+			}
 		}
 		perms = operators
 	}
 
 	return
 }
-
-/*
-
-	2
-
-	[+]
-	[*]
-
-	---
-
-	[++]
-	[+*]
-	[*+]
-	[**]
-
-	---
-
-	[++*]
-	[+++]
-	[+**]
-	[+*+]
-	[*+*]
-	[*++]
-	[***]
-	[**+]
-
-	___
-
-	[++*+]
-	[++**]
-	[++++]
-	[+++*]
-	[+**+]
-	[+***]
-	[+*++]
-	[+*+*]
-	[*+*+]
-	[*+**]
-	[*+++]
-	[*++*]
-	[***+]
-	[****]
-	[**++]
-	[**+*]
-
-
-
-
-*/

@@ -35,8 +35,6 @@ Determine which equations could possibly be true. *What is their total calibrati
 
 Your puzzle answer was `1545311493300`.
 
-The first half of this puzzle is complete! It provides one gold star: ⭐
-
 --- Part Two ---
 -------------------------
 
@@ -53,3 +51,7 @@ Now, apart from the three equations that could be made true using only addition 
 Adding up all six test values (the three that could be made before using only `+` and `*` plus the new three that can now be made by also using `||`) produces the new *total calibration result* of *11387*.
 
 Using your new knowledge of elephant hiding spots, determine which equations could possibly be true. *What is their total calibration result?*
+
+Your puzzle answer was `169122112716571`.
+
+Both parts of this puzzle are complete! They provide two gold stars: ⭐ ⭐

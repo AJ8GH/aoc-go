@@ -9,6 +9,7 @@ import (
 const (
 	input         = "resources/input.txt"
 	example       = "resources/example.txt"
+	example2      = "resources/example-2.txt"
 	lineDelimiter = "\n"
 	errorMessage  = "Error reading file %q: %q"
 )
@@ -16,8 +17,13 @@ const (
 func ReadInput() []string {
 	return Read(input)
 }
+
 func ReadExample() []string {
 	return Read(example)
+}
+
+func ReadExample2() []string {
+	return Read(example2)
 }
 
 func Read(file string) []string {

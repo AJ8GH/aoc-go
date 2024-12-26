@@ -1,4 +1,4 @@
-package day8
+package day9
 
 import (
 	"testing"
@@ -13,32 +13,32 @@ var testCases = []struct {
 	want    int
 }{
 	{
-		name:    "Day 8 Level 1 Example",
+		name:    "Day 9 Level 1 Example",
 		subject: Level1,
 		input:   util.ReadExample(),
-		want:    14,
+		want:    0,
 	},
 	{
-		name:    "Day 8 Level 1",
+		name:    "Day 9 Level 1",
 		subject: Level1,
 		input:   util.ReadInput(),
-		want:    285,
+		want:    0,
 	},
 	{
-		name:    "Day 8 Level 2 Example",
+		name:    "Day 9 Level 2 Example",
 		subject: Level2,
 		input:   util.ReadExample(),
-		want:    34,
+		want:    0,
 	},
 	{
-		name:    "Day 8 Level 2",
+		name:    "Day 9 Level 2",
 		subject: Level2,
 		input:   util.ReadInput(),
-		want:    944,
+		want:    0,
 	},
 }
 
-func TestDay8(t *testing.T) {
+func TestDay9(t *testing.T) {
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			got := tt.subject(tt.input)
@@ -46,3 +46,4 @@ func TestDay8(t *testing.T) {
 		})
 	}
 }
+

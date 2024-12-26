@@ -82,8 +82,6 @@ Calculate the impact of the signal. *How many unique locations within the bounds
 
 Your puzzle answer was `285`.
 
-The first half of this puzzle is complete! It provides one gold star: ⭐
-
 --- Part Two ---
 -------------------------
 
@@ -124,3 +122,7 @@ The original example now has *34* antinodes, including the antinodes that appear
     ...#......##
 
 Calculate the impact of the signal using this updated model. *How many unique locations within the bounds of the map contain an antinode?*
+
+Your puzzle answer was `944`.
+
+Both parts of this puzzle are complete! They provide two gold stars: ⭐ ⭐

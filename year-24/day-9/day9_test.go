@@ -16,19 +16,19 @@ var testCases = []struct {
 		name:    "Day 9 Level 1 Example",
 		subject: Level1,
 		input:   util.ReadExample(),
-		want:    0,
+		want:    1928,
 	},
 	{
 		name:    "Day 9 Level 1",
 		subject: Level1,
 		input:   util.ReadInput(),
-		want:    0,
+		want:    6337921897505,
 	},
 	{
 		name:    "Day 9 Level 2 Example",
 		subject: Level2,
 		input:   util.ReadExample(),
-		want:    0,
+		want:    2858,
 	},
 	{
 		name:    "Day 9 Level 2",
@@ -46,4 +46,3 @@ func TestDay9(t *testing.T) {
 		})
 	}
 }
-

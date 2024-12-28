@@ -7,24 +7,34 @@ type location struct {
 }
 
 func Level1(input []string) (count int) {
+	return solve(input, 1)
+}
+
+func Level2(input []string) (count int) {
+	return solve(input, 2)
+}
+
+func solve(input []string, level int) (count int) {
 	rows, trailheads := parse(input)
 	for _, v := range trailheads {
 		stack := []location{v}
 		for stack[0].val != 9 {
 			stack = getNexts(stack, rows)
 		}
-		ends := map[location]bool{}
-		for _, v := range stack {
-			ends[v] = true
+
+		switch level {
+		case 1:
+			ends := map[location]bool{}
+			for _, v := range stack {
+				ends[v] = true
+			}
+			count += len(ends)
+		case 2:
+			count += len(stack)
 		}
-		count += len(ends)
 	}
 
 	return
-}
-
-func Level2(input []string) int {
-	return 0
 }
 
 func getNexts(locs []location, rows [][]int) (out []location) {
@@ -42,17 +52,13 @@ func nexts(l location, rows [][]int) (nexts []location) {
 		{l.i, l.j - 1},
 	} {
 		if v[0] >= 0 && v[0] < len(rows) && v[1] >= 0 && v[1] < len(rows[v[0]]) {
-			next := get(v[0], v[1], rows)
+			next := location{i: v[0], j: v[1], val: rows[v[0]][v[1]]}
 			if next.val == l.val+1 {
 				nexts = append(nexts, next)
 			}
 		}
 	}
 	return
-}
-
-func get(i, j int, rows [][]int) location {
-	return location{i: i, j: j, val: rows[i][j]}
 }
 
 func parse(input []string) (rows [][]int, trailheads []location) {

@@ -58,11 +58,13 @@ Consider the arrangement of stones in front of you. *How many stones will you ha
 
 Your puzzle answer was `202019`.
 
-The first half of this puzzle is complete! It provides one gold star: ⭐
-
 --- Part Two ---
 -------------------------
 
 The Historians sure are taking a long time. To be fair, the infinite corridors *are* very large.
 
 *How many stones would you have after blinking a total of 75 times?*
+
+Your puzzle answer was `239321955280205`.
+
+Both parts of this puzzle are complete! They provide two gold stars: ⭐ ⭐

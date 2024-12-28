@@ -1,17 +1,18 @@
 package util
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
 )
 
 const (
-	input         = "resources/input.txt"
-	example       = "resources/example.txt"
-	example2      = "resources/example-2.txt"
-	lineDelimiter = "\n"
-	errorMessage  = "Error reading file %q: %q"
+	input           = "resources/input.txt"
+	example         = "resources/example.txt"
+	exampleTemplate = "resources/example-%d.txt"
+	lineDelimiter   = "\n"
+	errorMessage    = "Error reading file %q: %q"
 )
 
 func ReadInput() []string {
@@ -22,8 +23,8 @@ func ReadExample() []string {
 	return Read(example)
 }
 
-func ReadExample2() []string {
-	return Read(example2)
+func ReadExampleN(n int) []string {
+	return Read(fmt.Sprintf(exampleTemplate, n))
 }
 
 func Read(file string) []string {

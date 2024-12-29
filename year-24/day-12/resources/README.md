@@ -87,8 +87,6 @@ So, it has a total price of *1930*.
 
 Your puzzle answer was `1533644`.
 
-The first half of this puzzle is complete! It provides one gold star: ⭐
-
 --- Part Two ---
 -------------------------
 
@@ -147,3 +145,7 @@ The larger example from before now has the following updated prices:
 Adding these together produces its new total price of *1206*.
 
 *What is the new total price of fencing all regions on your map?*
+
+Your puzzle answer was `936718`.
+
+Both parts of this puzzle are complete! They provide two gold stars: ⭐ ⭐

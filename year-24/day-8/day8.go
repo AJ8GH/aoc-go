@@ -1,7 +1,7 @@
 package day8
 
 var locations map[string][]location
-var antinodes map[location]bool
+var antiNodes map[location]bool
 
 type location struct {
 	i, j int
@@ -33,45 +33,48 @@ func solve(input []string, level int) int {
 		}
 	}
 
-	antinodes = map[location]bool{}
+	antiNodes = map[location]bool{}
 	for _, v := range pairs {
 		if level == 2 {
-			antinodes[location{i: v.a.i, j: v.a.j}] = true
-			antinodes[location{i: v.b.i, j: v.b.j}] = true
+			antiNodes[location{i: v.a.i, j: v.a.j}] = true
+			antiNodes[location{i: v.b.i, j: v.b.j}] = true
 		}
 
 		diff := location{i: v.a.i - v.b.i, j: v.a.j - v.b.j}
 		antiA := location{i: v.a.i + diff.i, j: v.a.j + diff.j}
 		antiB := location{i: v.b.i - diff.i, j: v.b.j - diff.j}
 
-		for {
-			if antiA.i < 0 || antiA.i >= len(input) || antiA.j < 0 || antiA.j >= len(input[antiA.i]) {
-				break
-			}
-			antinodes[antiA] = true
-			runes := []rune(input[antiA.i])
-			runes[antiA.j] = '#'
-			input[antiA.i] = string(runes)
-			if level == 1 {
-				break
-			}
-			antiA = location{i: antiA.i + diff.i, j: antiA.j + diff.j}
-		}
-		for {
-			if antiB.i < 0 || antiB.i >= len(input) || antiB.j < 0 || antiB.j >= len(input[antiB.i]) {
-				break
-			}
-			antinodes[antiB] = true
-			runes := []rune(input[antiB.i])
-			runes[antiB.j] = '#'
-			input[antiB.i] = string(runes)
-			if level == 1 {
-				break
-			}
-			antiB = location{i: antiB.i - diff.i, j: antiB.j - diff.j}
-		}
+		findAntiNodes(antiA, diff, input, level, plus)
+		findAntiNodes(antiB, diff, input, level, minus)
 	}
-	return len(antinodes)
+	return len(antiNodes)
+}
+
+func findAntiNodes(
+	antiNode,
+	diff location,
+	input []string,
+	level int,
+	op func(int, int) int,
+) {
+	for {
+		if antiNode.i < 0 || antiNode.i >= len(input) || antiNode.j < 0 || antiNode.j >= len(input[antiNode.i]) {
+			break
+		}
+		antiNodes[antiNode] = true
+		if level == 1 {
+			break
+		}
+		antiNode = location{i: op(antiNode.i, diff.i), j: op(antiNode.j, diff.j)}
+	}
+}
+
+func plus(a, b int) int {
+	return a + b
+}
+
+func minus(a, b int) int {
+	return a - b
 }
 
 func pairs() (pairs []pair) {

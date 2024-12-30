@@ -51,8 +51,6 @@ Figure out how to win as many prizes as possible. *What is the fewest tokens you
 
 Your puzzle answer was `37901`.
 
-The first half of this puzzle is complete! It provides one gold star: ⭐
-
 --- Part Two ---
 -------------------------
 
@@ -79,3 +77,7 @@ Add `10000000000000` to the `X` and `Y` position of every prize. After making th
 Now, it is only possible to win a prize on the second and fourth claw machines. Unfortunately, it will take *many more than `100` presses* to do so.
 
 Using the corrected prize coordinates, figure out how to win as many prizes as possible. *What is the fewest tokens you would have to spend to win all possible prizes?*
+
+Your puzzle answer was `77407675412647`.
+
+Both parts of this puzzle are complete! They provide two gold stars: ⭐ ⭐

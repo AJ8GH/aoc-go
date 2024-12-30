@@ -34,7 +34,7 @@ var testCases = []struct {
 		name:    "Day 7 Level 2",
 		subject: Level2,
 		input:   util.ReadInput(),
-		want:    0,
+		want:    169122112716571,
 	},
 }
 

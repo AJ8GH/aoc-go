@@ -54,30 +54,34 @@ func rearrangeFiles(files []block) (rearranged []block) {
 			rearranged = append(rearranged, v)
 			moved[v.id] = true
 		case v.blockType == free:
-		inner:
-			for i := len(files) - 1; i >= 0; i-- {
-				fileToMove := files[i]
-				switch {
-				case moved[fileToMove.id] ||
-					fileToMove.blockType == free ||
-					fileToMove.size > v.size:
-					continue
-				default:
-					rearranged = append(rearranged, fileToMove)
-					v.size -= fileToMove.size
-					moved[fileToMove.id] = true
-					files[i] = block{id: -1, size: fileToMove.size, blockType: free}
-					if v.size == 0 {
-						break inner
-					}
-				}
-			}
-			if v.size > 0 {
-				rearranged = append(rearranged, v)
-			}
+			rearranged = fillEmptySpace(files, rearranged, moved, v)
 		}
 	}
 	return
+}
+
+func fillEmptySpace(files, rearranged []block, moved map[int]bool, v block) []block {
+	for i := len(files) - 1; i >= 0; i-- {
+		fileToMove := files[i]
+		switch {
+		case moved[fileToMove.id] ||
+			fileToMove.blockType == free ||
+			fileToMove.size > v.size:
+			continue
+		default:
+			rearranged = append(rearranged, fileToMove)
+			v.size -= fileToMove.size
+			moved[fileToMove.id] = true
+			files[i] = block{id: -1, size: fileToMove.size, blockType: free}
+			if v.size == 0 {
+				return rearranged
+			}
+		}
+	}
+	if v.size > 0 {
+		rearranged = append(rearranged, v)
+	}
+	return rearranged
 }
 
 func rearrangeBlocks(blocks []string) (rearranged []int) {

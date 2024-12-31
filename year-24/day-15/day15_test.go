@@ -28,13 +28,19 @@ var testCases = []struct {
 		name:    "Day 15 Level 1",
 		subject: Level1,
 		input:   util.ReadInput(),
-		want:    0,
+		want:    1526018,
 	},
 	{
 		name:    "Day 15 Level 2 Example",
 		subject: Level2,
 		input:   util.ReadExample(),
-		want:    0,
+		want:    105,
+	},
+	{
+		name:    "Day 15 Level 2 Example 2",
+		subject: Level2,
+		input:   util.ReadExampleN(2),
+		want:    9021,
 	},
 	{
 		name:    "Day 15 Level 2",

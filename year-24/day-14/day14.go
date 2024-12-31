@@ -2,10 +2,11 @@ package day14
 
 import (
 	"fmt"
-	"os"
 	"regexp"
 	"slices"
 	"strconv"
+
+	"github.com/aj8gh/aocgo/util"
 )
 
 const (
@@ -13,8 +14,6 @@ const (
 	level2Seconds    = 1_000_000_000
 	lengthToConsider = 10
 	showTree         = false
-	outputFile       = "output.txt"
-	mode             = 0600
 )
 
 var re = regexp.MustCompile(`\-?\d+`)
@@ -182,15 +181,5 @@ func show(robots []*robot, height, width, second int) {
 	}
 
 	println(out)
-
-	f, err := os.OpenFile(outputFile, os.O_WRONLY|os.O_CREATE, mode)
-	if err != nil {
-		panic(err)
-	}
-
-	defer f.Close()
-
-	if _, err = f.WriteString(out); err != nil {
-		panic(err)
-	}
+	util.Create(out)
 }

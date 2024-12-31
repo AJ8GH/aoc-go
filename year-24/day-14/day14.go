@@ -12,6 +12,9 @@ const (
 	level1Seconds    = 100
 	level2Seconds    = 1_000_000_000
 	lengthToConsider = 10
+	showTree         = false
+	outputFile       = "output.txt"
+	mode             = 0600
 )
 
 var re = regexp.MustCompile(`\-?\d+`)
@@ -55,7 +58,9 @@ func Level2(input []string) (result int) {
 	for i := 0; i < level2Seconds; i++ {
 		robots = simulate(robots, height, width)
 		if continuousRowExists(robots, lengthToConsider) {
-			show(robots, height, width, i)
+			if showTree {
+				show(robots, height, width, i)
+			}
 			return i + 1
 		}
 	}
@@ -171,14 +176,14 @@ func show(robots []*robot, height, width, second int) {
 	for _, r := range robots {
 		grid[r.p.y][r.p.x] = "O"
 	}
-	out := fmt.Sprintf("\nSecond %d:\n", second)
+	out := fmt.Sprintf("Second %d:\n", second)
 	for _, v := range grid {
 		out += fmt.Sprintf("%v\n", v)
 	}
 
 	println(out)
 
-	f, err := os.OpenFile("output.txt", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+	f, err := os.OpenFile(outputFile, os.O_WRONLY|os.O_CREATE, mode)
 	if err != nil {
 		panic(err)
 	}
